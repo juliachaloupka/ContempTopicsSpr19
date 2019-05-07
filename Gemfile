@@ -20,6 +20,7 @@ gem 'mongo', '~> 2.1', '>= 2.1.2'
 
 gem 'mongoid', '~> 6.0'
 
+gem 'mongoid_search', '~> 0.3'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
