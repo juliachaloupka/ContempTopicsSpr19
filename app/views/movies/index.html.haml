@@ -12,11 +12,14 @@
   %tbody
     - @movies.each do |movie|
       %tr
-        %td= movie.movie_title
-        %td= link_to "More about #{movie.movie_title}", movie_path(movie)
+        %td= movie.title
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
 
 
 = form_tag movies_search_db_path, :method => :post, :id => 'search_form' do
-  = label 'search', :search_terms, 'Search for movies titles containing:'
+  = label 'search', :search_terms, 'Search for movie titles containing:'
   = text_field nil, :search_terms, :id => 'search_box'
+  = select nil, :search_cat, ['Title','Actor','Director','Genre']
   = submit_tag 'Search db', :id => 'search_button'
