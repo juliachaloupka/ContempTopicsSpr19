@@ -32,7 +32,30 @@ class MoviesController < ApplicationController
   end
 
   def search_db
+    #puts params[:search_terms]
+    if(params[:search_terms].blank?)
+      flash[:notice] = "Invalid search term"
+      redirect_to movies_path
+    else
+      if params[:search_cat] == 'Title'
+        @movies=Movie.text_search(params[:search_terms])
+        @search_terms=params[:search_terms]
+      end
+      if params[:search_cat] == 'Director'
+        @movies=Movie.text_search(params[:search_terms])
+        @search_terms=params[:search_terms]
+      end
+      if params[:search_cat] == 'Actor'
+        @movies=Movie.text_search(params[:search_terms])
+        @search_terms=params[:search_terms]
+      end
 
+
+      if (@movies.count.nil? || @movies.count == 0)
+        flash[:notice] = "No matching movies were found in the DB"
+        redirect_to movies_path
+      end
+      end
   end
 
 

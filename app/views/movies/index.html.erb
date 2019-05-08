@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
 
 
-<h2>All Movies</h2>
+<h3>All Movies</h3>
 <table id="movies" class="table table-striped table-bordered">
   <thead>
   <tr>
@@ -50,14 +50,14 @@
   </tbody>
 </table>
 <%= form_tag movies_search_db_path, :method => :post, :id => 'search_form' do %>
-  <%= label 'search', :search_terms, 'Search for movies containing:' %>
+  <h4>Search movies by: </h4>
   <%= text_field nil, :search_terms, :id => 'search_box' %>
   <%= select nil, :search_cat, ['Title','Actor','Director','Genre'] %>
   <%= submit_tag 'Search db', :id => 'search_button' %>
 
   <script>
       $(document).ready(function(){
-          $('#movies').dataTable();
+          $('#movies').dataTable({searching: false, paging: true, info: false});
       });
   </script>
 <% end %>

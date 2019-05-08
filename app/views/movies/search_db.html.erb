@@ -1,0 +1,31 @@
+<h1>The following movies containing <%= @search_terms %> were found in the DB
+  <table id="movies">
+    <thead>
+    <tr>
+      <th>Movie Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>More</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td>
+          <%= movie[:movie_title] %>
+        </td>
+        <td>
+          <%= movie[:content_rating] %>
+        </td>
+        <td>
+          <%= movie[:title_year] %>
+        </td>
+        <td>
+          <%= link_to "More about #{movie.movie_title}", movie_path(movie) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</h1>
+<%= link_to 'Return to Movie List', movies_path, method: :get %>

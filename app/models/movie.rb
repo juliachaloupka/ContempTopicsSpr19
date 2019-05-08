@@ -22,19 +22,19 @@ class Movie
 
   def self.search_title(search)
     if search
-      self.find({:movie_title => search}).limit(10)
+      self.where({:movie_title => search}).limit(10)
     end
   end
 
   def self.search_director(search)
     if search
-      self.find({:director => search}).limit(10)
+      self.where({:director => search}).limit(10)
     end
   end
 
   def self.text_search(search)
     if search
-      self.({'$text' => {'$search' => search, '$caseSensitive' => false}}).limit(10)
+      self.where({'$text' => {'$search' => search, '$caseSensitive' => false}}).limit(10)
     end
   end
 
