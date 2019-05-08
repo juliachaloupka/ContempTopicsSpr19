@@ -22,7 +22,7 @@ class Movie
 
   def self.search_title(search)
     if search
-      self.where({:movie_title => /.*#{search}.*/i}).limit(10)
+      self.where({:movie_title => /.*#{search}.*/i}).limit(20)
     end
   end
 
