@@ -1,0 +1,35 @@
+<% # in app/views/movies/show.html.haml %>
+<h2>Details about <%= @movie.movie_title %> </h2>
+<ul id="details">
+  <li>
+    Rating:
+    <%= @movie.content_rating %>
+  </li>
+  <li>
+    Released in:
+    <%= @movie.title_year %>
+  </li>
+  <li>
+    Director:
+    <%= @movie.director_name %>
+  </li>
+  <li>
+    Country:
+    <%= @movie.country %>
+  </li>
+
+</ul>
+<h3>Actors: </h3>
+<p id="actors">
+  <%= @movie.actor_1_name %>, <%= @movie.actor_2_name %>, <%= @movie.actor_3_name %>
+</p>
+<h3>Genres:</h3>
+<p id="genres">
+  <%= @movie.genres %>
+</p>
+<h3>Plot Keywords:</h3>
+<p id="description">
+  <%= @movie.plot_keywords %>
+</p>
+
+<%= link_to 'Back to movie list', movies_path %>
