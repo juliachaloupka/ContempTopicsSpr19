@@ -53,6 +53,13 @@ class MoviesController < ApplicationController
       if params[:search_cat] == 'Actor'
         @movies=Movie.search_two_actors(params[:search_terms], params[:search_terms2])
         @search_terms=params[:search_terms]
+        @search_terms2 = params[:search_terms2]
+        if @search_terms.nil?
+          @search_terms = ""
+        end
+        if @search_terms2.nil?
+          @search_terms2 = ""
+        end
       end
 
 
