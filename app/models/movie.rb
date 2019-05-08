@@ -22,19 +22,19 @@ class Movie
 
   def self.search_title(search)
     if search
-      self.where({:movie_title => /.*#{search}.*/i}).limit(20)
+      self.where({:movie_title => /.*#{search}.*/i}).limit(50)
     end
   end
 
   def self.search_director(search)
     if search
-      self.where({:director_name => /.*#{search}.*/i}).limit(10)
+      self.where({:director_name => /.*#{search}.*/i}).limit(50)
     end
   end
 
   def self.text_search(search)
     if search
-      self.where({'$text' => {'$search' => search, '$caseSensitive' => false}}).limit(10)
+      self.where({'$text' => {'$search' => search, '$caseSensitive' => false}}).limit(50)
     end
   end
 
@@ -51,8 +51,8 @@ class Movie
           self.where({'actor_3_name' => /.*#{search1}.*/i, 'actor_1_name' => /.*#{search2}.*/i}).limit(10)
 
     elsif search1.blank? and not search2.blank?
-      self.where({'actor_1_name' => /.*#{search2}.*/i}).limit(10) +
-          self.where({'actor_2_name' => /.*#{search2}.*/i}).limit(10) + self.where({'actor_3_name' => /.*#{search2}.*/i}).limit(10)
+      self.where({'actor_1_name' => /.*#{search2}.*/i}).limit(20) +
+          self.where({'actor_2_name' => /.*#{search2}.*/i}).limit(20) + self.where({'actor_3_name' => /.*#{search2}.*/i}).limit(20)
     end
   end
 
