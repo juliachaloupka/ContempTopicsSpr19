@@ -51,14 +51,32 @@
 </table>
 <%= form_tag movies_search_db_path, :method => :post, :id => 'search_form' do %>
   <h4>Search movies by: </h4>
-  <%= text_field nil, :search_terms, :id => 'search_box' %>
-  <%= select nil, :search_cat, ['Title','Actor','Director','Genre'] %>
+  <label id="actorLabel" style="display:none;">Enter up to 2 actors, one in each box</label>
+  <%= select nil, :search_cat, ['Title/Keyword','Title only','Actor','Director','Genre'], {},
+             :onChange => "selectChange(this)", :id => "select1" %>
+  <%= text_field nil, :search_terms, :id => 'search_box', :autocomplete=>"off"%>
+  <%= text_field nil, :search_terms2, :id => 'search_box2', :autocomplete=> "off", :style =>"display:none;" %>
   <%= submit_tag 'Search db', :id => 'search_button' %>
 
   <script>
       $(document).ready(function(){
           $('#movies').dataTable({searching: false, paging: true, info: false});
+          document.getElementById("select1").value = "Title/Keyword";
       });
+      function selectChange(select) {
+        if(select.value == 'Actor')
+        {
+           document.getElementById("search_box2").style.display = "inline";
+           document.getElementById("actorLabel").style.display = "block";
+
+        }
+        else
+        {
+            document.getElementById("search_box2").style.display = "none";
+            document.getElementById("actorLabel").style.display = "none";
+        }
+      }
+
   </script>
 <% end %>
 

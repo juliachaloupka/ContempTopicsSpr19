@@ -37,16 +37,21 @@ class MoviesController < ApplicationController
       flash[:notice] = "Invalid search term"
       redirect_to movies_path
     else
-      if params[:search_cat] == 'Title'
+      if params[:search_cat] == 'Title/Keyword'
         @movies=Movie.text_search(params[:search_terms])
+        @search_terms=params[:search_terms]
+      end
+
+      if params[:search_cat] == 'Title only'
+        @movies=Movie.search_title(params[:search_terms])
         @search_terms=params[:search_terms]
       end
       if params[:search_cat] == 'Director'
-        @movies=Movie.text_search(params[:search_terms])
+        @movies=Movie.search_director(params[:search_terms])
         @search_terms=params[:search_terms]
       end
       if params[:search_cat] == 'Actor'
-        @movies=Movie.text_search(params[:search_terms])
+        @movies=Movie.search_two_actors(params[:search_terms], params[:search_terms2])
         @search_terms=params[:search_terms]
       end
 

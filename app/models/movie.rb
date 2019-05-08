@@ -22,13 +22,13 @@ class Movie
 
   def self.search_title(search)
     if search
-      self.where({:movie_title => search}).limit(10)
+      self.where({:movie_title => /.*#{search}.*/i}).limit(10)
     end
   end
 
   def self.search_director(search)
     if search
-      self.where({:director => search}).limit(10)
+      self.where({:director_name => /.*#{search}.*/i}).limit(10)
     end
   end
 
@@ -39,8 +39,20 @@ class Movie
   end
 
   def self.search_two_actors(search1, search2)
-    if search1 and search2
-      self.find({'actor_1_name' => search1, 'actor_2_name' => search2}).limit(10)
+    if not search1.blank? and search2.blank?
+      self.where({'actor_1_name' => /.*#{search1}.*/i}).limit(10) +
+          self.where({'actor_2_name' => /.*#{search1}.*/i}).limit(10) + self.where({'actor_3_name' => /.*#{search1}.*/i}).limit(10)
+    elsif not search1.blank? and not search2.blank?
+      self.where({'actor_1_name' => /.*#{search1}.*/i, 'actor_2_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_2_name' => /.*#{search1}.*/i, 'actor_1_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_2_name' => /.*#{search1}.*/i, 'actor_3_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_1_name' => /.*#{search1}.*/i, 'actor_3_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_3_name' => /.*#{search1}.*/i, 'actor_2_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_3_name' => /.*#{search1}.*/i, 'actor_1_name' => /.*#{search2}.*/i}).limit(10)
+
+    elsif search1.blank? and not search2.blank?
+      self.where({'actor_1_name' => /.*#{search2}.*/i}).limit(10) +
+          self.where({'actor_2_name' => /.*#{search2}.*/i}).limit(10) + self.where({'actor_3_name' => /.*#{search2}.*/i}).limit(10)
     end
   end
 
