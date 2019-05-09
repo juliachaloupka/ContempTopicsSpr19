@@ -16,6 +16,7 @@ class Movie
   field :gross, type: Integer
   field :imdb_score, type: Float
   field :movie_imdb_link, type: String
+  field :reco, type: String
 
   search_in :genres
 
