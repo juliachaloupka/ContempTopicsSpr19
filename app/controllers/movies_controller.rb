@@ -32,6 +32,7 @@ class MoviesController < ApplicationController
   end
 
   def search_db
+    session[:search_results] = request.url
     #puts params[:search_terms]
     if(params[:search_terms].blank?)
       flash[:notice] = "Invalid search term"

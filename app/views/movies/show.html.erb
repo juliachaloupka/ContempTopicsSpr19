@@ -31,6 +31,9 @@
 <p id="description">
   <%= @movie.plot_keywords %>
 </p>
+<%= link_to "Back to Search Results", session[:search_results] %>
+<br>
+<br>
 
-<%= link_to 'Return Home', movies_path, method: :get %>
+<%= link_to 'Return Home', movies_path, method: :get %><br>
 
