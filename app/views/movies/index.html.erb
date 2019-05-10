@@ -49,7 +49,7 @@
   <% end %>
   </tbody>
 </table>
-<%= form_tag movies_search_db_path, :method => :post, :id => 'search_form' do %>
+<%= form_tag search_db_path, :method => :get, :id => 'search_form' do %>
   <h4>Search movies by: </h4>
   <label id="actorLabel" style="display:none;">Enter up to 2 actors, one in each box</label>
   <%= select nil, :search_cat, ['Title/Keyword','Title only','Actor','Director','Genre'], {},
